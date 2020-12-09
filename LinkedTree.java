@@ -232,8 +232,10 @@ public class LinkedTree {
             root = newNode;
         } else if (key < parent.key) {
             parent.left = newNode;
+            newNode.parent = parent;  //edit 1
         } else {
             parent.right = newNode;
+            newNode.parent = parent;  //edit 2
         }
     }
     
@@ -297,6 +299,7 @@ public class LinkedTree {
             // replacement item.
             toDelete.key = replace.key;
             toDelete.data = replace.data;
+            toDelete.parent = replaceParent; //edit 3
             
             // Recursively delete the replacement item's old node.
             // It has at most one child, so we don't have to
