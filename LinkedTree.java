@@ -412,28 +412,26 @@ public class LinkedTree {
             // Store a copy of the key to be returned.
             int key = nextNode.key;
             
-            // Advance nextNode.
-            if (nextNode.left != null) {
-                nextNode = nextNode.left;
-            } else if (nextNode.right != null) {
-                nextNode = nextNode.right;
-            } else {
-                // We've just visited a leaf node.
-                // Go back up the tree until we find a node
-                // with a right child that we haven't seen yet.
+            if (nextNode.parent == null) {
+                throw new NoSuchElementException();
+            }
+            else if (nextNode.parent.right == null || nextNode.parent.right.key == key) {
+                nextNode = nextNode.parent;
+            }
+            else {
                 Node parent = nextNode.parent;
-                Node child = nextNode;
-                while (parent != null &&
-                       (parent.right == child || parent.right == null)) {
-                    child = parent;
-                    parent = parent.parent;
+                Node child = parent.right;
+                while (child.left != null || child.right != null) {
+                    if (child.left != null) {
+                        parent = child;
+                        child = child.left;
+                    }
+                    else {
+                        parent = child;
+                        child = child.right;
+                    }
                 }
-                
-                if (parent == null) {
-                    nextNode = null;  // the traversal is complete
-                } else {
-                    nextNode = parent.right;
-                }
+                nextNode = child;
             }
             
             return key;
