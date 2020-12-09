@@ -342,6 +342,9 @@ public class LinkedTree {
         private PreorderIterator() {
             // The traversal starts with the root node.
             nextNode = root;
+            while (nextNode.left != null) {
+                nextNode = nextNode.left;   
+            }
         }
         
         public boolean hasNext() {
