@@ -232,10 +232,10 @@ public class LinkedTree {
             root = newNode;
         } else if (key < parent.key) {
             parent.left = newNode;
-            newNode.parent = parent;  //edit 1
+            newNode.parent = parent; 
         } else {
             parent.right = newNode;
-            newNode.parent = parent;  //edit 2
+            newNode.parent = parent;
         }
     }
     
@@ -317,10 +317,10 @@ public class LinkedTree {
                 root = toDeleteChild;
             } else if (toDelete.key < parent.key) {
                 parent.left = toDeleteChild;
-                toDeleteChild.parent = parent;  // edit 3
+                toDeleteChild.parent = parent;
             } else {
                 parent.right = toDeleteChild;
-                toDeleteChild.parent = parent;  // edit 4
+                toDeleteChild.parent = parent;
             }
         }
     }
@@ -389,7 +389,7 @@ public class LinkedTree {
         return new postorderIterator();
     }
     
-    /*inner class for a preorder iterator */
+    /*inner class for a postorder iterator */
     private class PostorderIterator implements LinkedTreeIterator {
         private Node nextNode;
         
