@@ -395,8 +395,13 @@ public class LinkedTree {
         
         private PostorderIterator() {
             nextNode = root;
-            while (nextNode.left != null) {
-                nextNode = nextNode.left;   
+            while (nextNode.left != null !! nextNode.right != null) {
+                if (nextNode.left != null) {
+                    nextNode = nextNode.left;
+                }
+                else if (nextNode.right != null) {
+                    nextNode = nextNode.right;
+                }
             }
         }
         
@@ -406,19 +411,23 @@ public class LinkedTree {
         
         public int next() {
             if (nextNode == null) {
+                System.out.println("Going into first if.");
                 throw new NoSuchElementException();
             }
             
             // Store a copy of the key to be returned.
             int key = nextNode.key;
             
-            if (nextNode.parent == null) {
+            if (nextNode.parent == null) { // end of traversal
+                System.out.println("Going into second if.");
                 throw new NoSuchElementException();
             }
             else if (nextNode.parent.right == null || nextNode.parent.right.key == key) {
+                System.out.println("Going into else if.");
                 nextNode = nextNode.parent;
             }
             else {
+                System.out.println("Going into else.");
                 Node parent = nextNode.parent;
                 Node child = parent.right;
                 while (child.left != null || child.right != null) {
