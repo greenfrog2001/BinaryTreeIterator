@@ -440,5 +440,11 @@ public class LinkedTree {
     
     public static void main(String[] args) {
         /** Add your test code here **/
+        LinkedTreeIterator iter = tree.postorderIterator();
+        while (iter.hasNext()) {
+            int key = iter.next();
+
+            // do something with key
+}
     }
 }
