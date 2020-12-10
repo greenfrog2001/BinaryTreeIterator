@@ -443,7 +443,7 @@ public class LinkedTree {
         LinkedTree emptyTree = new LinkedTree();
         
         LinkedTree tree = new LinkedTree();
-        int[] keys = [1, 2, 3, 4, 5, 6];
+        int[] keys = {1, 2, 3, 4, 5, 6};
         tree.insertKeys(keys);
         
         
