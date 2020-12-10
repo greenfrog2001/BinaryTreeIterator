@@ -386,7 +386,7 @@ public class LinkedTree {
     
     /* Returns a postorder iterator for this tree. */
     public LinkedTreeIterator postorderIterator() {
-        return new postorderIterator();
+        return new PostorderIterator();
     }
     
     /*inner class for a postorder iterator */
@@ -440,11 +440,82 @@ public class LinkedTree {
     
     public static void main(String[] args) {
         /** Add your test code here **/
+        LinkedTree emptyTree = new LinkedTree();
+        
+        LinkedTree tree = new LinkedTree();
+        int[] keys = [1, 2, 3, 4, 5, 6];
+        tree.insertKeys(keys);
+        
+        
+        System.out.println("Unit tests for the LinkedTree class.");
+        System.out.println();
+        
+        System.out.println("Test 1: Prints the keys of the tree in the order given by a preorder traversal.");
+        tree.preorderPrint();
+        System.out.println();
+        
+        System.out.println("Test 2: Prints the keys of the tree in the order given by a postorder traversal.");
+        tree.postorderPrint();
+        System.out.println();
+        
+        System.out.println("Test 3: Prints the keys of the tree in the order given by a inorder traversal.");
+        tree.inorderPrint();
+        System.out.println();
+        
+        System.out.println("Test 4: Prints the keys of the tree in the order given by a level-order traversal.");
+        tree.levelOrderPrint();
+        System.out.println();
+        
+        System.out.println("Test 5: Searches for the specified key in the tree and prints its data.");
+        LLList data = tree.search(3);
+        System.out.println(data);
+        System.out.println();
+        
+        System.out.println("Test 6: Searches for a key that is not in the tree and prints its data as null");
+        LLList nullData = tree.search(12);
+        System.out.println(nullData);
+        System.out.println();
+        
+        System.out.println("Test 7: Inserts a new (key, data) pair in the empty tree.");
+        emptyTree.insert(9, "data for key " + 9);
+        System.out.println("The keys of the tree in order given by a postorder traversal after inserting new node with key 9:");
+        emptyTree.postorderPrint();
+        System.out.println();
+        
+        System.out.println("Test 8: Inserts a new (key, data) pair in the tree so that the tree remains a binary search tree.");
+        tree.insert(7, "data for key " + 7);
+        System.out.println("The keys of the tree in order given by a postorder traversal after inserting new node with key 7:");
+        tree.postorderPrint();
+        System.out.println();
+        
+        System.out.println("Test 9: Inserts a (key, data) pair whose key already exists in the tree so that the tree remains a binary search tree.");
+        tree.insert(4, "data for key " + 4);
+        System.out.println("The keys of the tree in order given by a postorder traversal after inserting new node with key 4:");
+        tree.postorderPrint();
+        System.out.println();
+        
+        System.out.println("Test 10: Deletes the node containing the (key, data) pair with the specified key from the tree and return the associated data item.");
+        LLList removedData1 = tree.delete(5);
+        System.out.println("The keys of the tree in order given by a postorder traversal after deleting node with key 5:");
+        tree.postorderPrint();
+        System.out.println("Removed data:");
+        System.out.println(removedData1);
+        System.out.println();
+        
+        System.out.println("Test 11: Deletes the node containing the (key, data) pair whose key is not the tree and return null");
+        LLList removedData2 = tree.delete(10);
+        System.out.println("The keys of the tree in order given by a postorder traversal after deleting node with key 10:");
+        tree.postorderPrint();
+        System.out.println("Removed data:");
+        System.out.println(removedData2);
+        System.out.println();
+        
+        System.out.println("Test 12: Prints the keys of the tree in the order given by a postorder traversal using iteration.");
         LinkedTreeIterator iter = tree.postorderIterator();
         while (iter.hasNext()) {
             int key = iter.next();
-
-            // do something with key
-}
+            System.out.print(key + " ");
+        System.out.println();
+        }
     }
 }
