@@ -16,7 +16,23 @@ public class Problem7 {
     
     private static <T extends Comparable<T>> boolean isHeapTree(T[] arr, int i) {
         // Implement this method.
+        if (i >= arr.length || arr.length == 1) {
+            return true;
+        }
+        boolean isMaxHeap = arr[0].compareTo(arr[1]) > 0;
         
+        if ( (arr[2*i+1].compareTo(arr[i]) > 0) == isMaxHeap && (arr[2*i+2].compareTo(arr[i]) > 0) == isMaxHeap) {
+            // if (isHeapTree(arr, 2*i+1) && isHeapTree(arr, 2*i+2)) {
+            //     return true;
+            // }
+            // else {
+            //     return false;
+            // }
+            return (isHeapTree(arr, 2*i+1) && isHeapTree(arr, 2*i+2));
+        }
+        else {
+            return false;
+        }
     }
     
     public static void main(String[] args) {
