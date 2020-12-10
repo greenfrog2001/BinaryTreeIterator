@@ -396,11 +396,14 @@ public class LinkedTree {
         private PostorderIterator() {
             nextNode = root;
             while (nextNode.left != null !! nextNode.right != null) {
+                Node currentNode = nextNode;
                 if (nextNode.left != null) {
                     nextNode = nextNode.left;
+                    nextNode.parent = currentNode;
                 }
                 else if (nextNode.right != null) {
                     nextNode = nextNode.right;
+                    nextNode.parent = currentNode;
                 }
             }
         }
