@@ -4,8 +4,8 @@
  * Computer Science 112
  *
  * Modifications and additions by:
- *     name:
- *     username:
+ *     name: Phuong Thao Vy Nguyen
+ *     username: Vy
  */
 
 import java.util.*;
@@ -392,20 +392,24 @@ public class LinkedTree {
     /*inner class for a postorder iterator */
     private class PostorderIterator implements LinkedTreeIterator {
         private Node nextNode;
-        
         private PostorderIterator() {
-            nextNode = root;
-            while (nextNode.left != null !! nextNode.right != null) {
-                Node currentNode = nextNode;
-                if (nextNode.left != null) {
-                    nextNode = nextNode.left;
-                    nextNode.parent = currentNode;
+            nextNode = helperPostorderNode(root) ;
+        }
+    
+        private Node helperPostorderNode(Node root) {
+            if (root == null) {
+                return null ;
+            }
+            Node trav = root;
+            while (trav.left != null || trav.right != null) {
+                if (trav.left != null) {
+                    trav = trav.left;
                 }
-                else if (nextNode.right != null) {
-                    nextNode = nextNode.right;
-                    nextNode.parent = currentNode;
+                else if (trav.right != null) {
+                    trav = trav.right;
                 }
             }
+            return trav;
         }
         
         public boolean hasNext() {
@@ -414,7 +418,6 @@ public class LinkedTree {
         
         public int next() {
             if (nextNode == null) {
-                System.out.println("Going into first if.");
                 throw new NoSuchElementException();
             }
             
@@ -422,15 +425,12 @@ public class LinkedTree {
             int key = nextNode.key;
             
             if (nextNode.parent == null) { // end of traversal
-                System.out.println("Going into second if.");
-                throw new NoSuchElementException();
+                nextNode = null;
             }
             else if (nextNode.parent.right == null || nextNode.parent.right.key == key) {
-                System.out.println("Going into else if.");
                 nextNode = nextNode.parent;
             }
             else {
-                System.out.println("Going into else.");
                 Node parent = nextNode.parent;
                 Node child = parent.right;
                 while (child.left != null || child.right != null) {
