@@ -20,7 +20,7 @@ public class Problem7 {
         }
         boolean isMaxHeap = arr[0].compareTo(arr[1]) > 0;
         
-        if ( (arr[2*i+1].compareTo(arr[i]) < 0) == isMaxHeap && (arr[2*i+2].compareTo(arr[i]) < 0) == isMaxHeap) {
+        if ((arr[2*i+1].compareTo(arr[i]) < 0) == isMaxHeap && (arr[2*i+2].compareTo(arr[i]) < 0) == isMaxHeap) {
             return (isHeapTree(arr, 2*i+1) && isHeapTree(arr, 2*i+2));
         }
         else {
